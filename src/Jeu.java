@@ -1,21 +1,27 @@
 
 public class Jeu {
 
-  public Plateau plateau;
-  public Boolean GameOver;
+	public Joueur firstPlayer;
+	public Joueur secondPlayer;
+	public Plateau plateau;
+	public Boolean GameOver = false;
+	public Boolean role = false;
+	public Windows vue;
 
-    /*public Vector  myPlateau;
-    public Vector  myPieces;
-    public Vector  myJoueur;*/
- 
+	public Jeu(Joueur firstPlayer,Joueur secondePlayer, Windows vue){
+		this.firstPlayer = firstPlayer;
+		this.secondPlayer = secondPlayer;
+		this.plateau = plateau;
+		this.vue = vue;
+	}
 
-  public void CommencerPartie() {
-  }
+	public void CommencerPartie(){
+	}
 
-  public void FinirPartie() {
-  }
+	public void FinirPartie() {
+	}
 
-  public void CommencerTour() {
-  }
+	public void CommencerTour() {
+	}
 
 }
