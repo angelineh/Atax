@@ -31,11 +31,10 @@ public class Plateau{
 			this.selected_image = ImageIO.read(new File("src/media/selected.png"));
 			this.wrong_image = ImageIO.read(new File("src/media/wrong.png"));
 		} catch (IOException e) {
-			System.out.println(e.getMessage());
 			System.out.print("Some images file are missings, please check "
 					+ "there existing before reloading the game");
 		}
-		this.initiateTheGame();
+		initiateTheGame();
 	}
 
 	public int getHauteur() {
@@ -53,7 +52,7 @@ public class Plateau{
 	}
 	public Boolean nextMove(int positionX,int positionY){
 		if(wait){
-			if(this.updateTheVue(positionX, positionY)){
+			if(updateTheVue(positionX, positionY)){
 				this.role = !this.role;
 				this.wait =! this.wait;
 				return true;
@@ -73,10 +72,10 @@ public class Plateau{
 	public Boolean updateTheVue(int x, int y ){
 		// c'est ce vue qui doit s'occuper de l'update des vues,
 		if(Math.max(Math.abs(selected[0]-x), Math.abs(selected[1]-y))==1 && positions[x][y]==0){
-			this.setVoisin(role?1:2,x,y);
+			setVoisin(role?1:2,x,y);
 			return true;
 		}else if(Math.abs(selected[0]-x)==2 && Math.abs(selected[1]-y)==2  && positions[x][y]==0){
-			this.setVoisin(role?1:2,x,y);
+			setVoisin(role?1:2,x,y);
 			positions[selected[0]][selected[1]]=0;
 			return true;
 		}else{
@@ -85,8 +84,9 @@ public class Plateau{
 	}
 	// Permet d'identifier le point choisis
 	public Boolean setSelected(int x, int y){
-		if(this.hasPermissionToPlay(x, y)){
-			this.selected[0]=x;this.selected[1]=y;
+		if(hasPermissionToPlay(x, y)){
+			selected[0]=x;
+			selected[1]=y;
 			return true;
 		}
 		return false;
@@ -99,7 +99,7 @@ public class Plateau{
 		positions[x][y]=value;
 		for(int i = 0; i < 3; i++){
 			for(int j=0; j<3;j++){
-				if(this.inPlateau(X+i, Y+j)){
+				if(inPlateau(X+i, Y+j)){
 					if(positions[X+i][Y+j]>0){
 						positions[X+i][Y+j]=value;
 					}

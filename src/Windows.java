@@ -17,18 +17,19 @@ public class Windows extends JFrame{
 	public Windows(Plateau plateau){
 		//Cette classe permet de faire des changements sur les fenêtres.
 		this.plateau = plateau;
-		this.panneau = new Interface(plateau,0);
-		this.panneau.setPreferredSize(new Dimension(this.plateau.hauteur * 50 , this.plateau.largeur * 50));
-		this.setTitle("Attax Game");
-		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.add(this.panneau);
-		this.addMouseListener(this.panneau);
-		this.pack();
-		this.setPanneauPosition();
-		this.setVisible(true);
+		panneau = new Interface(plateau,0);
+		panneau.setPreferredSize(new Dimension(plateau.hauteur * 50 , plateau.largeur * 50));
+		setTitle("Attax Game");
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		add(panneau);
+		addMouseListener(panneau);
+		pack();
+		setPanneauPosition();
+		setLocationByPlatform(true);
+		setVisible(true);
 	}
 	public void setPanneauPosition(){
-		this.panneau.positionY = this.getHeight() - this.plateau.hauteur * 50;
+		panneau.positionY = getHeight() - plateau.hauteur * 50;
 	}
 }
