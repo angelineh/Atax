@@ -5,25 +5,30 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JPanel;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Color;
 
 import javax.swing.JFrame;
-public class Windows {
+public class Windows extends JFrame{
 	JFrame fenetre ;
 	Plateau plateau;
 	Interface panneau;
 	public Windows(Plateau plateau){
+		//Cette classe permet de faire des changements sur les fenêtres.
 		this.plateau = plateau;
-		this.panneau = new Interface(plateau);
-		this.fenetre = new JFrame(); 
-		this.fenetre.setResizable(false);
-		this.fenetre.setTitle("Attax Game");
-		this.fenetre.setSize(this.plateau.hauteur * 50 , this.plateau.largeur * 50);
-		this.fenetre.setLocationRelativeTo(null);
-		this.fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.fenetre.add(this.panneau);
-		this.fenetre.addMouseListener(this.panneau);
-		this.fenetre.setVisible(true);
+		this.panneau = new Interface(plateau,0);
+		this.panneau.setPreferredSize(new Dimension(this.plateau.hauteur * 50 , this.plateau.largeur * 50));
+		this.setTitle("Attax Game");
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.add(this.panneau);
+		this.addMouseListener(this.panneau);
+		this.pack();
+		this.setPanneauPosition();
+		this.setVisible(true);
+	}
+	public void setPanneauPosition(){
+		this.panneau.positionY = this.getHeight() - this.plateau.hauteur * 50;
 	}
 }

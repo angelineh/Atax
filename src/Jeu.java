@@ -5,7 +5,6 @@ public class Jeu {
 	public Joueur secondPlayer;
 	public Plateau plateau;
 	public Boolean GameOver = false;
-	public Boolean role = false;
 	public Windows vue;
 
 	public Jeu(Joueur firstPlayer,Joueur secondePlayer, Windows vue){
@@ -21,7 +20,8 @@ public class Jeu {
 	public void FinirPartie() {
 	}
 
-	public void CommencerTour() {
+	public void CommencerTour(int i, int j) {
+		//To complete
 	}
 
 }

@@ -10,6 +10,7 @@ public class Plateau{
 	public BufferedImage black_side;
 	public BufferedImage white_side;
 	public BufferedImage base_material;
+	public Boolean role = false;
 	public Integer hauteur;
 	public Integer largeur;
 	public int[][] positions;
@@ -27,6 +28,7 @@ public class Plateau{
 			System.out.print("Some images file are missings, please check "
 					+ "there existing before reloading the game");
 		}
+		this.initiateTheGame();
 	}
 
 	public int getHauteur() {
@@ -36,7 +38,12 @@ public class Plateau{
 	public int getLargeur() {
 		return largeur;
 	}
-
+	public void initiateTheGame(){
+		positions[0][0]=1;
+		positions[hauteur-1][largeur-1]=1;
+		positions[0][largeur-1]=2;
+		positions[hauteur-1][0]=2;
+	}
 	public void AfficherCaseDisponible(){
 
 	}
