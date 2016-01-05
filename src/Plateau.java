@@ -58,10 +58,9 @@ public class Plateau{
 				this.wait =! this.wait;
 				return true;
 			}else{
-				
+
 				return false;
 			}
-
 		}else{
 			if(this.setSelected(positionX, positionY)){
 				this.wait =! this.wait;
@@ -73,10 +72,10 @@ public class Plateau{
 	}
 	public Boolean updateTheVue(int x, int y ){
 		// c'est ce vue qui doit s'occuper de l'update des vues,
-		if(Math.max(Math.abs(selected[0]-x), Math.abs(selected[1]-y))==1){
+		if(Math.max(Math.abs(selected[0]-x), Math.abs(selected[1]-y))==1 && positions[x][y]==0){
 			this.setVoisin(role?1:2,x,y);
 			return true;
-		}else if(Math.abs(selected[0]-x)==2 && Math.abs(selected[1]-y)==2 ){
+		}else if(Math.abs(selected[0]-x)==2 && Math.abs(selected[1]-y)==2  && positions[x][y]==0){
 			this.setVoisin(role?1:2,x,y);
 			positions[selected[0]][selected[1]]=0;
 			return true;
@@ -84,6 +83,7 @@ public class Plateau{
 			return false;
 		}
 	}
+	// Permet d'identifier le point choisis
 	public Boolean setSelected(int x, int y){
 		if(this.hasPermissionToPlay(x, y)){
 			this.selected[0]=x;this.selected[1]=y;
@@ -97,8 +97,8 @@ public class Plateau{
 	public void setVoisin(int value, int x, int y){
 		int X = x-1, Y=y-1;
 		positions[x][y]=value;
-		for(int i = 0; i < 2; i++){
-			for(int j=0; j<2;j++){
+		for(int i = 0; i < 3; i++){
+			for(int j=0; j<3;j++){
 				if(this.inPlateau(X+i, Y+j)){
 					if(positions[X+i][Y+j]>0){
 						positions[X+i][Y+j]=value;
@@ -109,6 +109,29 @@ public class Plateau{
 	}
 	public Boolean inPlateau(int x, int y){
 		return x >=0 && x < largeur && y >=0 && y < hauteur;
+	}
+	public Boolean isOver(){
+		for(int i = 0; i < largeur; i++){
+			for(int j=0; j<hauteur;j++){
+				if(positions[i][j]==0 && this.hasNeighberHoudWithValue(role?1:2, i, j)){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	public Boolean hasNeighberHoudWithValue(int value, int x,int y){
+		int X = x-1, Y=y-1;
+		for(int i = 0; i < 3; i++){
+			for(int j=0; j<3;j++){
+				if(this.inPlateau(X+i, Y+j)){
+					if(positions[X+i][Y+j] == value && i != 1 && j!=1){
+						return true;
+					}
+				}
+			}
+		}
+		return false;
 	}
 }
 
