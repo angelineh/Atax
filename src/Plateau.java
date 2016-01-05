@@ -29,6 +29,12 @@ public class Plateau{
 					+ "there existing before reloading the game");
 		}
 		this.initiateTheGame();
+		//public void paint(Graphics g){
+                  //g.setColor(Plateau);
+                  //int x[] = {0, 80, 220, 300, 220, 80};
+	          //int y[] = {100, 20, 20, 100, 180, 180};
+ 	          //g.fillPolygon(x, y, 6);
+ 	         //}
 	}
 
 	public int getHauteur() {
