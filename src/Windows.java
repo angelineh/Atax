@@ -14,6 +14,21 @@ public class Windows extends JFrame{
 	JFrame fenetre ;
 	Plateau plateau;
 	Interface panneau;
+	
+	//private JMenuBar menuBar = new JMenuBar();
+	//private JMenu test1 = new JMenu("Fichier");
+	//private JMenuItem item1 = new JMenuItem("Commencer partie");
+        //private JMenuItem item2 = new JMenuItem("Finir partie");
+        //private JMenuItem item3 = new JMenuItem("Commencer tour");
+        
+        //this.test1.add(item1);
+        //this.test1.add(item2);
+        //this.test1.add(item3);
+        
+        // this.menuBar.add(test1);
+        //this.setJMenuBar(menuBar);
+        //this.setVisible(true);
+        
 	public Windows(Plateau plateau){
 		//Cette classe permet de faire des changements sur les fenêtres.
 		this.plateau = plateau;
