@@ -1,0 +1,88 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+
+
+public class Hexagone extends JButton implements MouseListener{
+	Hexagone hexagone;
+	
+	public Hexagone(){
+		this.addMouseListener(this);
+		for (int i=0; i<largeurMax; i++){
+			plateau.put(i,0);
+		}
+	}
+		private static int largeurMax = 5;
+		private static int hauteurMax = 5;
+		private static int nbCases = largeurMax*hauteurMax;	
+		private static HashMap plateau = new HashMap();
+		
+		public static int getKey(int a){
+			return (int)plateau.get(a);
+		}
+		
+		public static int getHauteurMax(){
+			return hauteurMax;
+		}
+		
+		public static int getLargeurMax(){
+			return largeurMax;
+		}
+		
+		public static int getNbCases(){
+			return nbCases;
+		}
+		
+		public static HashMap getPlateau(){
+			return plateau;
+		}
+		
+	public void paintComponent(Graphics g){                 
+		int centreX0=100;
+		int centreY0=300;
+		int centreX =0;
+		int centreY =0;
+		int tabCoordX[][] = new int [Jeu.getNbCases()][6];
+		int tabCoordY[][] = new int [Jeu.getNbCases()][6];
+		int numCase = 0;
+		
+		for (int i=0; i<Jeu.getHauteurMax(); i++ ){
+			for(int j=0; j<Jeu.getLargeurMax(); j++){
+				
+				centreX = centreX0+75;
+				centreY = centreY0+50;
+				int[] x1={centreX,centreX+50,centreX+75,centreX+50,centreX,centreX-25};
+				int[] y1={centreY,centreY,centreY+50,centreY+100,centreY+100,centreY+50};
+				for (int k=0; k<6; k++){
+					tabCoordX[numCase][k]=x1[k];
+					tabCoordY[numCase][k]=y1[k];
+				}
+				
+				g.drawPolygon(x1,y1,6);
+				centreX0 = centreX;
+				centreY0 = centreY;
+				numCase++;
+			}
+			centreX0 = tabCoordX[numCase-Jeu.getLargeurMax()][0];
+			centreY0 = tabCoordY[numCase-Jeu.getHauteurMax()][0]-100;
+		}
+	}
+		  public void mouseClicked(MouseEvent event) {
+			  if((event.getY() > 0 && event.getY() < 100) && (event.getX() > 0 && event.getX() < 100)){
+				  Jeu.getPlateau().put(1, 1);
+			  }
+		  }
+		  public void mouseEntered(MouseEvent event) { 
+		  }
+
+		  public void mouseExited(MouseEvent event) { 	  
+		  }
+
+		  public void mousePressed(MouseEvent event) {
+		  }
+
+		  public void mouseReleased(MouseEvent event) {        
+		  }
+
+}
